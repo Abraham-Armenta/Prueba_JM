@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Pintura - AutoPinturasJM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        
+        .product-img {
+            max-height: 500px;
+            object-fit: contain;
+            background-color: #fff;
+        }
+        /* Estilo para los círculos de colores */
+        .color-circle {
+            width: 100px;
+            height: 35px;
+            border-radius: 5%;
+            display: inline-block;
+            margin-right: 10px;
+            border: 2px solid #dee2e6;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .color-circle:hover {
+            transform: scale(1.2);
+            border-color: #2c2b2b13;
+        }
+    </style>
+    
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-arrow-left me-2"></i> Volver al Catálogo
+            </a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div id="cargando" class="text-center">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2">Cargando detalles técnicos...</p>
+        </div>
+
+        <div id="contenido-detalle" class="row d-none">
+            <div class="col-md-6 mb-4">
+                <img id="foto" src="" class="img-fluid rounded shadow-sm product-img w-100" alt="Producto">
+            </div>
+            
+            <div class="col-md-6">
+                <h1 id="nombre" class="display-5 fw-bold mb-3"></h1>
+                <h3 id="precio" class="text-primary mb-4"></h3>
+                
+                <hr>
+                
+                <div id="seccion-colores" class="mb-4 d-none"> 
+                    <h6 class="fw-bold text-secondary">Colores disponibles:</h6>
+                    <div id="contenedor-colores" class="d-flex flex-wrap gap-2 mt-2">
+                        </div>
+                </div>
+
+                <h5>Descripción del Producto:</h5>
+                <p id="descripcion" class="lead text-secondary mb-5" style="text-align: justify;"></p>
+                
+                <div class="d-grid gap-2">
+                    <a id="btn-whatsapp" href="#" target="_blank" class="btn btn-success btn-lg">
+                        <i class="bi bi-whatsapp me-2"></i> Consultar disponibilidad
+                    </a>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const productoId = params.get('id');
+
+        async function cargarDetalle() {
+            if (!productoId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:1337/api/pinturas/${productoId}?populate=*`);
+                const json = await response.json();
+                
+                // --- AJUSTE PARA STRAPI v5 ---
+                // A veces los datos vienen en json.data, a veces en json.data.attributes
+                const pinturaRaw = json.data;
+                const pintura = pinturaRaw.attributes ? pinturaRaw.attributes : pinturaRaw;
+
+                // Debug: Esto te dirá en la consola (F12) qué está recibiendo el código
+                console.log("Datos recibidos de la pintura:", pintura);
+
+                const formateador = new Intl.NumberFormat('es-MX', {
+                    style: 'currency',
+                    currency: 'MXN',
+                });
+
+                // 1. Datos básicos
+                document.getElementById('nombre').innerText = pintura.Nombre || 'Sin nombre';
+                document.getElementById('precio').innerText = pintura.precio 
+                    ? formateador.format(pintura.precio) 
+                    : 'Precio no disponible';
+                
+                // 2. Descripción
+                document.getElementById('descripcion').innerText = pintura.Descripcion?.[0]?.children?.[0]?.text 
+                    || 'Sin descripción técnica disponible.';
+
+                // 3. Imagen
+                if (pintura.Imagen) {
+                    document.getElementById('foto').src = `http://localhost:1337${pintura.Imagen.url}`;
+                }
+
+                // 4. Lógica de Colores mejorada
+
+                const variantes = pintura.ColoresDisponibles || []; 
+
+                const contenedorColores = document.getElementById('contenedor-colores');
+                const seccionColores = document.getElementById('seccion-colores');
+
+                // El resto sigue igual
+                const coloresActivos = variantes.filter(col => col.Activo === true);
+
+                if (coloresActivos.length > 0) {
+                seccionColores.classList.remove('d-none');
+                contenedorColores.innerHTML = coloresActivos.map(col => {
+                    // Validamos que el Hex tenga el '#' para que no truene el CSS
+                    const hexColor = col.CodigoHex.startsWith('#') ? col.CodigoHex : `#${col.CodigoHex}`;
+                    
+                    return `
+                        <div class="text-center me-3 mb-2">
+                            <span class="color-circle" 
+                                  style="background-color: ${hexColor};" 
+                                  title="${col.NombreColor}">
+                            </span>
+                            <br>
+                            <small class="text-muted" style="font-size: 0.7rem;">${col.NombreColor}</small>
+                        </div>
+                    `;
+                }).join('');
+            }   
+                // 5. WhatsApp
+                const mensajeWa = `Hola, me interesa la pintura: ${pintura.Nombre}`;
+                document.getElementById('btn-whatsapp').href = `https://wa.me/6461085875?text=${encodeURIComponent(mensajeWa)}`;
+
+                document.getElementById('cargando').classList.add('d-none');
+                document.getElementById('contenido-detalle').classList.remove('d-none');
+
+            } catch (error) {
+                console.error("Error al cargar detalle:", error);
+                document.getElementById('cargando').innerHTML = `<div class="alert alert-danger">Error de conexión con el catálogo.</div>`;
+            }
+        }   
+
+        cargarDetalle();
+    </script>
+
+</body>
+
+</html>

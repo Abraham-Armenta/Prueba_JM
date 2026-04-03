@@ -1,0 +1,83 @@
+
+
+
+
+/* --- RESET GENERAL PARA BÚSQUEDA --- */
+body {
+    padding-top: 110px; /* Espacio para el navbar fijo */
+    background-color: #f4f7f6;
+}
+
+/* --- CONTENEDOR DE TARJETAS --- */
+#lista-resultados {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* --- LA TARJETA (CARD) --- */
+.card {
+    border: none !important; /* Mata la línea azul/gris de raíz */
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    background-color: #ffffff;
+    overflow: hidden;
+    outline: none !important;
+}
+
+/* --- LA IMAGEN --- */
+.card-img-top {
+    height: 250px;
+    object-fit: contain;
+    padding: 20px;
+    background-color: #ffffff;
+    border: none !important;
+    display: block;
+}
+
+/* --- TEXTOS --- */
+.card-title {
+    font-size: 1.1rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.precio-catalogo {
+    color: #2f357d;
+    font-weight: 800;
+    transition: color 0.3s ease;
+}
+
+/* --- EFECTO HOVER (AZUL MARINO) --- */
+.card:hover {
+    background-color: #2f357d !important;
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+.card:hover .card-title,
+.card:hover .precio-catalogo {
+    color: #ffffff !important;
+}
+
+/* --- ELIMINAR FOCUS AZUL DEL ENLACE --- */
+.stretched-link:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* --- AJUSTES PARA MÓVIL --- */
+@media (max-width: 767.98px) {
+    .card {
+        margin: 0 10px 15px 10px; /* Espacio lateral para que no pegue al borde */
+    }
+
+    .card-img-top {
+        height: 220px; /* Un poco más pequeña en cel */
+    }
+
+    .navbar-brand img {
+        width: 130px !important; /* Logo compacto */
+    }
+}

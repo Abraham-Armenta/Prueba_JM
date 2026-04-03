@@ -1,0 +1,152 @@
+/* Seleccionamos la card que creamos en el bucle */
+.card {
+    min-height: 200px; /* Ajusta este valor según qué tan largas quieras las tarjetas */
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.descripcion-corta {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 4.5em; /* Altura fija para que todas las cajas de texto midan lo mismo */
+    line-height: 1.5em;
+}
+
+/* 3. Corregir el salto de línea en el grid de Bootstrap */
+#lista-pinturas {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Cuando el mouse se posa sobre la card */
+.card:hover {
+    background-color: #2828a8dc; /* Azul Marino (Navy) */
+    color: rgb(255, 255, 255) !important;   /* Cambiamos el texto a blanco para que se lea bien */
+    transform: translateY(-7px); /* Un pequeño salto hacia arriba como en National Oak */
+}
+.card-img-top {
+      height: 400px;
+      object-fit: contain;
+      background: #ffffff;
+    }
+
+/* Ajuste para que los textos secundarios también cambien a blanco al hacer hover */
+.card:hover .text-secondary, 
+.card:hover .card-title {
+    color: rgb(255, 255, 255) !important;
+}
+body {
+  /* Ajusta este valor según el alto total de tu logo + línea */
+  padding-top: 100px; 
+}
+
+@media (max-width: 576px) {
+    #lista-pinturas {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .card {
+        margin-bottom: 10px; /* Separación extra en móvil */
+    }
+}
+
+@media (max-width: 767.98px) {
+    /* 1. Ajustamos la imagen para que llene bien el ancho sin verse 'chica' */
+    .card-img-top {
+        height: 280px !important; /* Altura generosa para que no se vea plana */
+        padding: 15px !important;
+        object-fit: contain; /* Mantiene la forma del bote de pintura/spray */
+    }
+
+    /* 2. Centramos y agrandamos el texto para que no se pierda en el ancho */
+    .card-title {
+        font-size: 1.2rem !important;
+        margin-top: 10px;
+        padding: 0 10px;
+    }
+
+    .precio-catalogo {
+        font-size: 1.4rem !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* 3. Sombra más marcada para que la tarjeta resalte sobre el fondo */
+    .card {
+        margin-left: 50px;
+        margin-right: 50px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+        min-height: auto !important; /* Que crezca según el contenido */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Logo más pequeño en móvil para que quepa el buscador */
+    .navbar-brand img {
+        width: 130px !important;
+        height: auto !important;
+    }
+    
+    /* Reducimos el tamaño del buscador en móvil */
+    #input-busqueda {
+        height: 35px;
+        padding-left: 15px !important;
+        font-size: 0.85rem;
+    }
+
+    /* Quitamos márgenes excesivos en móvil */
+    .search-container {
+        margin-left: 5px !important;
+        margin-right: 5px !important;
+    }
+}
+
+
+
+
+.precio-catalogo {
+    color: #000080; /* Azul Marino por defecto */
+    transition: color 0.3s ease; /* Para que cambie suave si quieres */
+}
+
+/* Si quieres que el precio cambie de color cuando pasas el mouse por la card */
+.card:hover .precio-catalogo {
+    color: #ffffff; /* Se pone blanco para que resalte sobre el fondo azul marino */
+}
+
+.card-title {
+    margin-bottom: 1.5rem; /* Un poco más de espacio abajo del título */
+}
+/* Selecciona todos los labels dentro de tus filtros */
+#filtros-categoria .form-check-label {
+    padding-left: 7px;
+    cursor: pointer; /* Un toque extra para que se vea que es clickeable */
+}
+
+/* Opcional: Si quieres un poco de espacio entre cada fila */
+#filtros-categoria .form-check {
+    margin-bottom: 10px;
+}
+
+/* Separación entre títulos de filtros */
+h5.text-primary {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+/* Espaciado de las casillas */
+.form-check {
+    margin-bottom: 5px;
+}
+
+/* Scroll si la lista de proveedores es muy larga */
+#filtros-proveedor {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Autopinturas JM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="banner.css"></link>
+    <link rel="stylesheet" href="selection_card.css"><link>
+</head>
+
+<body>
+
+    <nav class="navbar bg-white fixed-top border-bottom p-2">
+    <div class="container-fluid d-flex align-items-center">
+        
+        <a class="navbar-brand d-flex align-items-center text-dark fw-bold" href="index.html">
+            <img src="img/logo.png" alt="Logo" width="210" height="100" class="d-inline-block">
+        </a>
+
+        <form id="form-busqueda" class="d-flex flex-grow-1 mx-2 mx-lg-5 search-container">
+            <div class="input-group">
+                <input id="input-busqueda" class="form-control rounded-start-pill ps-4" type="search" placeholder="¿Qué pintura buscas?">
+                <button class="btn rounded-end-pill pe-3" type="submit" style="background-color: #2f357d; color: white;">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Menú</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    </nav>
+
+    <div class="container my-5 px-0">
+        <div id="heroCarrusel" class="carousel slide shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+            
+            <div class="carousel-indicators custom-indicators d-none d-md-flex">
+                <button type="button" data-bs-target="#heroCarrusel" data-bs-slide-to="0" class="active rounded shadow-sm">
+                    <span>Montana x Kaspersky</span>
+                </button>
+                <button type="button" data-bs-target="#heroCarrusel" data-bs-slide-to="1" class="rounded shadow-sm">
+                    <span>Sayer Fleet</span>
+                </button>
+                <button type="button" data-bs-target="#heroCarrusel" data-bs-slide-to="2" class="rounded shadow-sm">
+                    <span>Accesorios</span>
+                </button>
+            </div>
+
+            <div class="carousel-inner" style="height: 500px;">
+                <div class="carousel-item active h-100">
+                    <img src="img/carrusel/prueba1.png" class="d-block w-100 h-100 object-fit-cover" alt="Promo 1">
+                    <div class="carousel-caption d-none d-md-block text-start" style="bottom: 100px; left: 50px;">
+                        <h2 class="display-4 fw-bold text-white shadow-text">TEMPORADA COLOR-REVOLUCIONARIA</h2>
+                        <p class="lead">Adquiere el estuche maestro y recibe regalos.</p>
+                        <a href="#" class="btn btn-primary btn-lg shadow">Ver Promoción</a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item h-100">
+                    <img src="img/banner2.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Promo 2">
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarrusel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarrusel" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 50px;">
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <div style="background-color: #2f357d; height: 10px; width: 100%;"></div>
+                <h1 class="text-center my-4">Catálogo de Pinturas</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9 col-md-8 mb-4">
+                <div id="lista-pinturas" class="row row-cols-2 row-cols-md-3 g-20">
+
+
+                    <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 mb-4">
+                <div class="p-4 border rounded bg-light shadow-sm text-center" style="min-height: 300px;">
+                    <h5 class="text-primary">Categoría</h5>
+
+                    <!-- Apartado para Categorías Primarias -->
+                    <div id="filtros-categoria" class="d-flex flex-column align-items-start">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categoriaAccesorio" id="catThinner"
+                                value="thinner">
+                            <label class="form-check-label" for="catThinner">Thinner</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categoriaAccesorio" id="catPrimario"
+                                value="primario">
+                            <label class="form-check-label" for="catPrimario">Primario</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categoriaAccesorio" id="catTransparente"
+                                value="transparente">
+                            <label class="form-check-label" for="catTransparente">Transparente</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categoriaAccesorio" id="catSolvente"
+                                value="solvente">
+                            <label class="form-check-label" for="catSolvente">Solvente</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categoriaAccesorio" id="catPistolas"
+                                value="fulanito">
+                            <label class="form-check-label" for="catPistolas">Pistolas</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categoriaAccesorio" id="catSpray"
+                                value="spray">
+                            <label class="form-check-label" for="catSpray">Spray</label>
+                        </div>
+                    </div>
+
+                    <!-- Apartado para Provedores -->
+                    <h5 class="text-primary">Proveedores</h5>
+                    <div id="filtros-proveedor" class="d-flex flex-column align-items-start">
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPEliteCoat"
+                                value="EliteCoat">
+                            <label class="form-check-label" for="catPEliteCoat">Elite Coat</label>
+                        </div>
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPSayer"
+                                value="Sayer">
+                            <label class="form-check-label" for="catPSayer">Sayer</label>
+                        </div>
+
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPDiamante"
+                                value="Diamante">
+                            <label class="form-check-label" for="catPDiamante">Diamante</label>
+                        </div>
+
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPHighTeck"
+                                value="HighTeck">
+                            <label class="form-check-label" for="catPHighTeck">High Teck</label>
+                        </div>
+
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPMontana"
+                                value="Montana">
+                            <label class="form-check-label" for="catPMontana">Montana</label>
+                        </div>
+
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPInstaFinish"
+                                value="InstaFinish">
+                            <label class="form-check-label" for="catPInstaFinish">Insta Finish</label>
+                        </div>
+
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPWurth"
+                                value="Wurth">
+                            <label class="form-check-label" for="catPWurth">Wurth</label>
+                        </div>
+
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPMeguiars"
+                                value="Meguiars">
+                            <label class="form-check-label" for="catPMeguiars">Meguiars</label>
+                        </div>
+
+                        <div class="form-check " >
+                            <input class="form-check-input" type="checkbox" name="categoriaProveedores" id="catPKlinspor"
+                                value="Klinspor">
+                            <label class="form-check-label" for="catPKlinspor">Klinspor</label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer
+            class="text-center text-lg-start text-white"
+            style="background-color: #1c2331"
+            >
+        <!-- Section: Social media -->
+        <section
+                class="d-flex justify-content-between p-4"
+                style="background-color: #6351ce"
+                >
+        <!-- Left -->
+        <div class="me-5">
+            <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="text-white me-4">
+            <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold">Company name</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p>
+                Here you can use rows and columns to organize your footer
+                content. Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit.
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold">Products</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p>
+                <a href="#!" class="text-white">MDBootstrap</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">MDWordPress</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">BrandFlow</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">Bootstrap Angular</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold">Useful links</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p>
+                <a href="#!" class="text-white">Your Account</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">Become an Affiliate</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">Shipping Rates</a>
+                </p>
+                <p>
+                <a href="#!" class="text-white">Help</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold">Contact</h6>
+                <hr
+                    class="mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px; background-color: #7c4dff; height: 2px"
+                    />
+                <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
+                <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+            </div>
+            <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div
+            class="text-center p-3"
+            style="background-color: rgba(0, 0, 0, 0.2)"
+            >
+        © 2020 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/"
+            >MDBootstrap.com</a
+            >
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+
+    <script src="catalogo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

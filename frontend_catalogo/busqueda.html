@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda - AutoPinturas JM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="busqueda.css"><link>
+</head>
+
+<body>
+
+    <nav class="navbar bg-white fixed-top border-bottom p-2">
+        <div class="container-fluid d-flex align-items-center">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="img/logo.png" alt="Logo" width="210" height="100" class="d-inline-block">
+            </a>
+
+            <form id="form-busqueda" class="d-flex flex-grow-1 mx-2 mx-md-4 mx-lg-5 search-container" role="search">
+                <div class="input-group">
+                    <input class="form-control border-end-0 rounded-start-pill ps-4" type="search" placeholder="¿Qué pintura buscas?" id="input-busqueda">
+                    <button class="btn border-start-0 rounded-end-pill pe-3" type="submit" style="background-color: #2f357d; color: white;">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+           
+        
+    <div class="container"style="margin-top: 75px;" >
+        <div style="background-color: #2f357d; height: 10px; width: 100%; margin-bottom: 20px;"></div>
+        <h2 id="titulo-busqueda" class="fw-bold mb-4 text-center text-md-start">Resultados para: </h2>
+        
+        <div class="row">
+            <main class="col-lg-9 col-md-8 mb-4 order-1">
+                <div id="lista-resultados" class="row g-3">
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="mt-2">Buscando productos...</p>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="col-lg-3 col-md-4 mb-4 order-2">
+                <div class="p-4 border rounded bg-light shadow-sm text-center" style="min-height: 300px;">
+                    
+                    <h5 class="text-primary fw-bold mb-3">Categoría</h5>
+                    <div id="filtros-categoria" class="d-flex flex-column align-items-start">
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="thinner" id="catThinner"><label class="form-check-label" for="catThinner">Thinner</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="primario" id="catPrimario"><label class="form-check-label" for="catPrimario">Primario</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="transparente" id="catTransparente"><label class="form-check-label" for="catTransparente">Transparente</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="solvente" id="catSolvente"><label class="form-check-label" for="catSolvente">Solvente</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="fulanito" id="catPistolas"><label class="form-check-label" for="catPistolas">Pistolas</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="spray" id="catSpray"><label class="form-check-label" for="catSpray">Spray</label></div>
+                    </div>
+
+                    <h5 class="text-primary fw-bold mt-4 mb-3">Proveedores</h5>
+                    <div id="filtros-proveedor" class="d-flex flex-column align-items-start">
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="EliteCoat" id="catPEliteCoat"><label class="form-check-label" for="catPEliteCoat">Elite Coat</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="Sayer" id="catPSayer"><label class="form-check-label" for="catPSayer">Sayer</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="Diamante" id="catPDiamante"><label class="form-check-label" for="catPDiamante">Diamante</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="HighTeck" id="catPHighTeck"><label class="form-check-label" for="catPHighTeck">High Teck</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="Montana" id="catPMontana"><label class="form-check-label" for="catPMontana">Montana</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="InstaFinish" id="catPInstaFinish"><label class="form-check-label" for="catPInstaFinish">Insta Finish</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="Wurth" id="catPWurth"><label class="form-check-label" for="catPWurth">Wurth</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="Meguiars" id="catPMeguiars"><label class="form-check-label" for="catPMeguiars">Meguiars</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" value="Klinspor" id="catPKlinspor"><label class="form-check-label" for="catPKlinspor">Klinspor</label></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="busqueda.js"></script>
+
+</body>
+
+</html>

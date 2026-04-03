@@ -1,0 +1,53 @@
+/* Altura General */
+#heroCarrusel {
+    height: 500px;
+}
+
+/* Indicadores tipo "Tabs" abajo */
+.custom-indicators {
+    bottom: 20px !important;
+    gap: 15px;
+    margin-bottom: 0;
+}
+
+.custom-indicators button {
+    width: 150px !important; /* Ancho de la pestañita */
+    height: 45px !important;
+    text-indent: 0 !important; /* Para que el texto sea visible */
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.custom-indicators button.active {
+    background-color: #2f357d !important; /* El azul de tu línea */
+    width: 180px !important;
+    border-color: white !important;
+}
+
+.custom-indicators button:hover {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Sombra al texto para que se lea sobre cualquier imagen */
+.shadow-text {
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+/* Bordes redondeados modernos */
+.rounded-4 {
+    border-radius: 1.5rem !important;
+}
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+    #heroCarrusel {
+        height: 350px;
+    }
+}
