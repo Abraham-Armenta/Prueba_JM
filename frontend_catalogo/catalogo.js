@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:1337/api/pinturas?populate=*";
+const API_URL = "https://dbpinturasjm.onrender.com/api/pinturas?populate=*";
 let todosLosProductos = []; 
 
 
