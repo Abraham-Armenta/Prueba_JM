@@ -65,7 +65,7 @@ function mostrarProductos(lista) {
     lista.forEach(pintura => {
         // 1. Manejo de la Imagen
         const fotoUrl = pintura.Imagen 
-            ? `http://localhost:1337${pintura.Imagen.url}` 
+            ? `https://dbpinturasjm.onrender.com${pintura.Imagen.url}` 
             : 'https://via.placeholder.com/200';
 
         // 2. Manejo del Precio
