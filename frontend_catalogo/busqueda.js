@@ -1,5 +1,5 @@
     // 1. Configuración básica (Ajusta la URL si es necesario)
-    const STRAPI_URL = "http://localhost:1337";
+    const STRAPI_URL = "https://dbpinturasjm.onrender.com";
 
     async function ejecutarBusqueda() {
         // 2. Obtener el término de búsqueda de la URL (?query=lo-que-sea)
@@ -22,7 +22,7 @@
             const respuesta = await fetch(endpoint);
             const datos = await respuesta.json();
             const pinturas = datos.data;
-            
+
             contenedor.innerHTML = ""; // Limpiar el "Cargando..."
 
             if (!pinturas || pinturas.length === 0) {

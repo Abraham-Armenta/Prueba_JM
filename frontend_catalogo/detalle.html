@@ -91,7 +91,7 @@
             }
 
             try {
-                const response = await fetch(`http://localhost:1337/api/pinturas/${productoId}?populate=*`);
+                const response = await fetch(`https://dbpinturasjm.onrender.com/api/pinturas/${productoId}?populate=*`);
                 const json = await response.json();
                 
                 // --- AJUSTE PARA STRAPI v5 ---
@@ -119,7 +119,7 @@
 
                 // 3. Imagen
                 if (pintura.Imagen) {
-                    document.getElementById('foto').src = `http://localhost:1337${pintura.Imagen.url}`;
+                    document.getElementById('foto').src = `https://dbpinturasjm.onrender.com${pintura.Imagen.url}`;
                 }
 
                 // 4. Lógica de Colores mejorada

@@ -151,7 +151,7 @@ async function cargarResultados() {
     try {
         // 2. Pedir a Strapi productos que coincidan con el nombre
         // Usamos el filtro $containsi (que no distingue mayúsculas/minúsculas)
-        const url = `http://localhost:1337/api/pinturas?filters[Nombre][$containsi]=${query}&populate=*`;
+        const url = `https://dbpinturasjm.onrender.com/api/pinturas?filters[Nombre][$containsi]=${query}&populate=*`;
         
         const response = await fetch(url);
         const data = await response.json();
