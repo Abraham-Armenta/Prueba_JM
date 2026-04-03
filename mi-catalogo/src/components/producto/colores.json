@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_producto_colores",
+  "info": {
+    "displayName": "Colores",
+    "icon": "brush"
+  },
+  "options": {},
+  "attributes": {
+    "NombreColor": {
+      "type": "string"
+    },
+    "CodigoHex": {
+      "type": "string"
+    },
+    "Activo": {
+      "type": "boolean",
+      "default": true
+    },
+    "precio": {
+      "type": "decimal"
+    }
+  },
+  "config": {}
+}
