@@ -1,0 +1,70 @@
+{
+    "kind": "collectionType",
+    "collectionName": "pinturas",
+    "info": {
+        "singularName": "pintura",
+        "pluralName": "pinturas",
+        "displayName": "Pintura"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "Nombre": {
+            "type": "string"
+        },
+        "Descripcion": {
+            "type": "blocks"
+        },
+        "Imagen": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "categoriaAccesorio": {
+            "type": "enumeration",
+            "enum": [
+                "primario",
+                "transparente",
+                "solvente",
+                "thinner",
+                "fulanito",
+                "sutanito",
+                "spray"
+            ]
+        },
+        "precio": {
+            "type": "decimal"
+        },
+        "Disponibilidad": {
+            "type": "boolean"
+        },
+        "categoriaProveedores": {
+            "type": "enumeration",
+            "enum": [
+                "EliteCoat",
+                "Sayer",
+                "Diamante",
+                "HighTeck",
+                "Montana",
+                "Max",
+                "InstaFinish",
+                "Wurth",
+                "Meguiars",
+                "Klinspor",
+                "NoneSea"
+            ]
+        },
+        "ColoresDisponibles": {
+            "type": "component",
+            "component": "producto.colores",
+            "repeatable": true
+        }
+    }
+}
